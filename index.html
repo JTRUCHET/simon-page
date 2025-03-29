@@ -2,10 +2,19 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="refresh" content="0; url=https://unleashed-nickel-059.notion.site/1c5a0917a3178048ae98cff7cc9d9dcd?v=1c5a0917a317808fbc98000c2d706005" />
-    <title>Redirection vers le planning de Simon</title>
+    <title>Accès protégé - Planning Simon</title>
+    <script>
+      function checkPassword() {
+        const password = prompt("Entrez le mot de passe pour accéder au planning :");
+        if (password === "Simon2025") {
+          window.location.href = "https://unleashed-nickel-059.notion.site/1c5a0917a3178048ae98cff7cc9d9dcd?v=1c5a0917a317808fbc98000c2d706005";
+        } else {
+          alert("Mot de passe incorrect. Accès refusé.");
+        }
+      }
+    </script>
   </head>
-  <body>
-    <p>Redirection vers le planning de Simon...</p>
+  <body onload="checkPassword()">
+    <p>Vérification du mot de passe en cours...</p>
   </body>
 </html>
