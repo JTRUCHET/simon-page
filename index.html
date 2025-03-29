@@ -2,19 +2,47 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <title>Accès protégé - Planning Simon</title>
-    <script>
-      function checkPassword() {
-        const password = prompt("Entrez le mot de passe pour accéder au planning :");
-        if (password === "Simon2025") {
-          window.location.href = "https://unleashed-nickel-059.notion.site/1c5a0917a3178048ae98cff7cc9d9dcd?v=1c5a0917a317808fbc98000c2d706005";
-        } else {
-          alert("Mot de passe incorrect. Accès refusé.");
-        }
+    <title>Planning de Simon</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        font-family: sans-serif;
       }
-    </script>
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* Cacher dimanche après chargement de l’iframe (via JS juste après) */
+    </style>
   </head>
-  <body onload="checkPassword()">
-    <p>Vérification du mot de passe en cours...</p>
+  <body>
+    <iframe id="notionFrame" src="https://unleashed-nickel-059.notion.site/1c5a0917a3178048ae98cff7cc9d9dcd?v=1c5a0917a317808fbc98000c2d706005"></iframe>
+
+    <script>
+      // Hack pour attendre que l’iframe charge
+      const iframe = document.getElementById("notionFrame");
+
+      iframe.onload = function () {
+        try {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+          const observer = new MutationObserver(() => {
+            const sundayColumns = iframeDoc.querySelectorAll('[data-day="Sunday"], [data-testid*="Sunday"]');
+
+            sundayColumns.forEach(el => el.style.display = "none");
+          });
+
+          observer.observe(iframeDoc.body, { childList: true, subtree: true });
+        } catch (e) {
+          console.log("Accès limité au contenu Notion (CORS) — hack impossible ici 😢");
+        }
+      };
+    </script>
   </body>
 </html>
