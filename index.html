@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Planning de Simon</title>
-    <style>
-      html, body {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-        overflow: hidden;
-        font-family: sans-serif;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planning Simon 2025</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+    #loader {
+      text-align: center;
+      padding: 1em;
+      background-color: #f0f0f0;
+      font-size: 1.2em;
+    }
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="loader">Chargement du planning de Simon…</div>
+  <iframe id="notionFrame" src="https://unleashed-nickel-059.notion.site/1c5a0917a3178048ae98cff7cc9d9dcd?v=1c5a0917a317808fbc98000c2d706005"></iframe>
+
+  <script>
+    const iframe = document.getElementById("notionFrame");
+
+    iframe.onload = () => {
+      document.getElementById("loader").style.display = "none";
+
+      try {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        const interval = setInterval(() => {
+          const headerCells = iframeDoc.querySelectorAll('[style*="display: flex"] [style*="font-weight: 500"]');
+
+          if (headerCells.length === 7 && headerCells[0]?.textContent?.toLowerCase().includes('dim')) {
+            // Supprimer la colonne dimanche
+            headerCells[0].parentElement.parentElement.remove(); // En-tête
+            const rows = iframeDoc.querySelectorAll('[style*="display: flex"][style*="align-items: stretch"]');
+            rows.forEach(row => {
+              const firstCell = row.querySelector(':scope > div');
+              if (firstCell) firstCell.remove();
+            });
+
+            clearInterval(interval);
+          }
+        }, 300);
+      } catch (e) {
+        console.warn("Impossible d’accéder à l’iframe (limitation navigateur).");
       }
-
-      iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-      }
-
-      /* Cacher dimanche après chargement de l’iframe (via JS juste après) */
-    </style>
-  </head>
-  <body>
-    <iframe id="notionFrame" src="https://unleashed-nickel-059.notion.site/1c5a0917a3178048ae98cff7cc9d9dcd?v=1c5a0917a317808fbc98000c2d706005"></iframe>
-
-    <script>
-      // Hack pour attendre que l’iframe charge
-      const iframe = document.getElementById("notionFrame");
-
-      iframe.onload = function () {
-        try {
-          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-          const observer = new MutationObserver(() => {
-            const sundayColumns = iframeDoc.querySelectorAll('[data-day="Sunday"], [data-testid*="Sunday"]');
-
-            sundayColumns.forEach(el => el.style.display = "none");
-          });
-
-          observer.observe(iframeDoc.body, { childList: true, subtree: true });
-        } catch (e) {
-          console.log("Accès limité au contenu Notion (CORS) — hack impossible ici 😢");
-        }
-      };
-    </script>
-  </body>
+    };
+  </script>
+</body>
 </html>
