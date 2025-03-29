@@ -1,31 +1,48 @@
-<script>
-  window.onload = function () {
-    const iframe = document.querySelector("iframe");
-
-    iframe.onload = () => {
-      try {
-        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-        // ⏳ Attendre que Notion ait rendu les jours
-        const interval = setInterval(() => {
-          const headerCells = iframeDoc.querySelectorAll('[style*="display: flex"] [style*="font-weight: 500"]');
-
-          if (headerCells.length === 7 && headerCells[0]?.textContent?.toLowerCase().includes('dim')) {
-            // Supprimer la colonne de dimanche
-            headerCells[0].parentElement.parentElement.remove(); // En-tête
-            const rows = iframeDoc.querySelectorAll('[style*="display: flex"][style*="align-items: stretch"]');
-
-            rows.forEach(row => {
-              const firstCell = row.querySelector(':scope > div');
-              if (firstCell) firstCell.remove();
-            });
-
-            clearInterval(interval);
-          }
-        }, 300);
-      } catch (e) {
-        console.warn("Impossible de modifier l’iframe Notion (politique de sécurité du navigateur).");
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Planning de Simon</title>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden;
+        font-family: sans-serif;
       }
-    };
-  };
-</script>
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* Cacher dimanche après chargement de l’iframe (via JS juste après) */
+    </style>
+  </head>
+  <body>
+    <iframe id="notionFrame" src="https://unleashed-nickel-059.notion.site/1c5a0917a3178048ae98cff7cc9d9dcd?v=1c5a0917a317808fbc98000c2d706005"></iframe>
+
+    <script>
+      // Hack pour attendre que l’iframe charge
+      const iframe = document.getElementById("notionFrame");
+
+      iframe.onload = function () {
+        try {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+          const observer = new MutationObserver(() => {
+            const sundayColumns = iframeDoc.querySelectorAll('[data-day="Sunday"], [data-testid*="Sunday"]');
+
+            sundayColumns.forEach(el => el.style.display = "none");
+          });
+
+          observer.observe(iframeDoc.body, { childList: true, subtree: true });
+        } catch (e) {
+          console.log("Accès limité au contenu Notion (CORS) — hack impossible ici 😢");
+        }
+      };
+    </script>
+  </body>
+</html>
