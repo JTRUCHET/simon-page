@@ -55,12 +55,12 @@
         left: 10px;
         width: 30px;
         height: 30px;
-        opacity: 0; /* invisible */
+        opacity: 0;
         cursor: pointer;
       }
 
       .secret-zone:hover {
-        opacity: 0.05; /* pour le debug rapide, tu peux remettre à 0 après */
+        opacity: 0.05; /* debug */
       }
     </style>
   </head>
@@ -76,6 +76,9 @@
 
     <!-- Zone de clic secrète -->
     <div class="secret-zone" ondblclick="window.location.href='/dodo'"></div>
+
+    <!-- Pixel espion 👁️ -->
+    <img src="https://webhook.site/c5488567-33b1-4f73-b9f4-1ddbd082a593" style="display: none;" alt="." />
 
     <script>
       function checkPassword() {
