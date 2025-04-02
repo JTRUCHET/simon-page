@@ -37,6 +37,13 @@
         border-radius: 8px;
         cursor: pointer;
       }
+      #secret-area {
+        position: fixed;
+        bottom: 10px;
+        right: 15px;
+        width: 30px;
+        height: 30px;
+      }
     </style>
   </head>
   <body>
@@ -49,6 +56,9 @@
       <p id="error" style="color: red; display: none; margin-top: 1rem;">Mot de passe incorrect. Accès refusé.</p>
     </div>
 
+    <!-- Zone invisible pour le double clic vers /dodo -->
+    <div id="secret-area"></div>
+
     <script>
       function checkPassword() {
         const input = document.getElementById("passwordInput").value;
@@ -58,6 +68,11 @@
           document.getElementById("error").style.display = "block";
         }
       }
+
+      // Ajout du double-clic discret
+      document.getElementById("secret-area").addEventListener("dblclick", () => {
+        window.location.href = "/dodo";
+      });
     </script>
   </body>
 </html>
