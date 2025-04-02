@@ -12,7 +12,9 @@
         justify-content: center;
         height: 100vh;
         margin: 0;
+        position: relative;
       }
+
       .popup {
         background: white;
         padding: 2rem;
@@ -20,6 +22,7 @@
         box-shadow: 0 0 10px rgba(0,0,0,0.1);
         text-align: center;
       }
+
       input[type="password"] {
         padding: 0.5rem;
         font-size: 1.2rem;
@@ -27,6 +30,7 @@
         border-radius: 8px;
         width: 100%;
       }
+
       button {
         margin-top: 1rem;
         padding: 0.6rem 1.2rem;
@@ -37,12 +41,26 @@
         border-radius: 8px;
         cursor: pointer;
       }
-      #secret-area {
-        position: fixed;
+
+      #error {
+        color: red;
+        display: none;
+        margin-top: 1rem;
+      }
+
+      /* Zone cliquable secrète */
+      .secret-zone {
+        position: absolute;
         bottom: 10px;
-        right: 15px;
+        left: 10px;
         width: 30px;
         height: 30px;
+        opacity: 0; /* invisible */
+        cursor: pointer;
+      }
+
+      .secret-zone:hover {
+        opacity: 0.05; /* pour le debug rapide, tu peux remettre à 0 après */
       }
     </style>
   </head>
@@ -53,11 +71,11 @@
       <input type="password" id="passwordInput" placeholder="Mot de passe" />
       <br />
       <button onclick="checkPassword()">OK</button>
-      <p id="error" style="color: red; display: none; margin-top: 1rem;">Mot de passe incorrect. Accès refusé.</p>
+      <p id="error">Mot de passe incorrect. Accès refusé.</p>
     </div>
 
-    <!-- Zone invisible pour le double clic vers /dodo -->
-    <div id="secret-area"></div>
+    <!-- Zone de clic secrète -->
+    <div class="secret-zone" ondblclick="window.location.href='/dodo'"></div>
 
     <script>
       function checkPassword() {
@@ -68,11 +86,6 @@
           document.getElementById("error").style.display = "block";
         }
       }
-
-      // Ajout du double-clic discret
-      document.getElementById("secret-area").addEventListener("dblclick", () => {
-        window.location.href = "/dodo";
-      });
     </script>
   </body>
 </html>
