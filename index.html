@@ -3,18 +3,61 @@
   <head>
     <meta charset="UTF-8" />
     <title>Accès protégé - Planning Simon</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .popup {
+        background: white;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        text-align: center;
+      }
+      input[type="password"] {
+        padding: 0.5rem;
+        font-size: 1.2rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        width: 100%;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        border: none;
+        background-color: #4285f4;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="popup">
+      <h2>simon.791concept.fr indique</h2>
+      <p>Entrez le mot de passe pour accéder au planning :</p>
+      <input type="password" id="passwordInput" placeholder="Mot de passe" />
+      <br />
+      <button onclick="checkPassword()">OK</button>
+      <p id="error" style="color: red; display: none; margin-top: 1rem;">Mot de passe incorrect. Accès refusé.</p>
+    </div>
+
     <script>
       function checkPassword() {
-        const password = prompt("Entrez le mot de passe pour accéder au planning :");
-        if (password === "Simon2025") {
+        const input = document.getElementById("passwordInput").value;
+        if (input === "Simon2025") {
           window.location.href = "https://unleashed-nickel-059.notion.site/1c5a0917a3178048ae98cff7cc9d9dcd?v=1c5a0917a317808fbc98000c2d706005&pvs=4";
         } else {
-          alert("Mot de passe incorrect. Accès refusé.");
+          document.getElementById("error").style.display = "block";
         }
       }
     </script>
-  </head>
-  <body onload="checkPassword()">
-    <p>Vérification du mot de passe en cours...</p>
   </body>
 </html>
