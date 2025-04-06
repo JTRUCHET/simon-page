@@ -12,18 +12,15 @@
       height: 100vh;
       background: url('petitprince.jpg') no-repeat center center;
       background-size: cover;
-      backdrop-filter: blur(4px);
     }
 
     .message {
       position: absolute;
-      top: 20px;
-      left: 30px;
-      background-color: rgba(255, 255, 255, 0.6);
-      padding: 0.8rem 1.2rem;
-      border-radius: 10px;
-      font-size: 1.2rem;
+      top: 40px;
+      left: 50px;
+      font-size: 1.8rem;
       font-style: italic;
+      color: black;
     }
 
     #retour {
@@ -31,25 +28,14 @@
       bottom: 20px;
       width: 100%;
       text-align: center;
-      font-size: 0.8rem;
-      color: #444;
+      font-size: 0.9rem;
+      color: white;
       text-decoration: underline;
       cursor: pointer;
     }
 
     #retour:hover {
-      color: black;
+      color: #ffd;
     }
   </style>
 </head>
-<body>
-  <div class="message">“Quelqu’un m’a aimé. Il y a longtemps. Lentement.”</div>
-
-  <div id="retour" ondblclick="window.location.href='/'">
-    (double clic ici pour retourner à l’accueil)
-  </div>
-
-  <!-- Pixel espion /case2 -->
-  <img src="https://webhook.site/c5488567-33b1-4f73-b9f4-1ddbd082a593?src=case2" style="display: none;" alt="." />
-</body>
-</html>
