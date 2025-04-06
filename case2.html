@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Case 2 – Damier de ma vie</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Le_Petit_Prince_drawing_fr_wikipedia.jpg/800px-Le_Petit_Prince_drawing_fr_wikipedia.jpg') no-repeat center center;
+      background-size: cover;
+      backdrop-filter: blur(4px);
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: normal;
+    }
+
+    #retour {
+      position: absolute;
+      bottom: 20px;
+      font-size: 0.8rem;
+      color: #ccc;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    #retour:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <h1>“Quelqu’un m’a aimé. Il y a longtemps. Lentement.”</h1>
+  </div>
+
+  <div id="retour" ondblclick="window.location.href='/dodo'">
+    (double clic ici pour retourner au dodo)
+  </div>
+
+  <!-- Pixel espion /case2 -->
+  <img src="https://webhook.site/c5488567-33b1-4f73-b9f4-1ddbd082a593?src=case2" style="display: none;" alt="." />
+</body>
+</html>
