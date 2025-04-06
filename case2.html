@@ -8,47 +8,42 @@
       margin: 0;
       padding: 0;
       font-family: 'Georgia', serif;
-      color: white;
+      color: black;
       height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
       background: url('petitprince.jpg') no-repeat center center;
       background-size: cover;
       backdrop-filter: blur(4px);
     }
 
-    .overlay {
-      background-color: rgba(0, 0, 0, 0.6);
-      padding: 2rem;
-      border-radius: 12px;
-      max-width: 600px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      font-weight: normal;
+    .message {
+      position: absolute;
+      top: 20px;
+      left: 30px;
+      background-color: rgba(255, 255, 255, 0.6);
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      font-style: italic;
     }
 
     #retour {
       position: absolute;
       bottom: 20px;
+      width: 100%;
+      text-align: center;
       font-size: 0.8rem;
-      color: #ccc;
+      color: #444;
       text-decoration: underline;
       cursor: pointer;
     }
 
     #retour:hover {
-      color: white;
+      color: black;
     }
   </style>
 </head>
 <body>
-  <div class="overlay">
-    <h1>“Quelqu’un m’a aimé. Il y a longtemps. Lentement.”</h1>
-  </div>
+  <div class="message">“Quelqu’un m’a aimé. Il y a longtemps. Lentement.”</div>
 
   <div id="retour" ondblclick="window.location.href='/'">
     (double clic ici pour retourner à l’accueil)
