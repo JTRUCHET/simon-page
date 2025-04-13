@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ça va aller</title>
+    <style>
+      body {
+        margin: 0;
+        background-color: #fffaf6;
+        font-family: 'Georgia', serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+        color: #333;
+      }
+
+      h1 {
+        font-size: 2em;
+        margin-bottom: 2rem;
+      }
+
+      audio {
+        outline: none;
+      }
+
+      button {
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+        border: none;
+        background-color: #d94b4b;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      button:hover {
+        background-color: #b23a3a;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Ça va aller… ça va aller.</h1>
+    <audio id="player" src="/case3/fiston.mp3"></audio>
+    <button onclick="document.getElementById('player').play()">Écouter</button>
+  </body>
+</html>
