@@ -90,26 +90,27 @@
         }
       }
     </script>
-    <!-- 🟫 Damier secret – 8x8 cases -->
+    <!-- 🟫 Damier secret – 8x8 cases puis +1case par semaine --> 
 <div id="damier-secret">
-  <!-- 64 cases générées -->
+  <!-- à l'origine 64 cases générées au 13_04_2025 100 Cases -->
   <a href="/dodo" class="case" style="grid-area: 8 / 1;"></a>      <!-- Case 1 : en bas à gauche -->
   <a href="/case2.html" class="case" style="grid-area: 2 / 7;"></a> <!-- Case 2 déplacée -->
-  <!-- Les 62 autres cases restent silencieuses -->
+  <a href="/case3/" class="case" style="grid-area: 6 / 9;"></a> <!-- Case 3 -->
+  <!-- Les 97 autres cases restent silencieuses -->
 </div>
 
 <style>
   #damier-secret {
-    display: grid;
-    grid-template-rows: repeat(9, 1fr);
-    grid-template-columns: repeat(9, 1fr);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-  }
+  display: grid;
+  grid-template-rows: repeat(10, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
 
   #damier-secret .case {
     pointer-events: auto;
