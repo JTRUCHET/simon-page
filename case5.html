@@ -8,27 +8,40 @@
     body {
       margin: 0;
       padding: 0;
-      background: url('/enfants_pas_isoles.jpg') no-repeat center center fixed;
+      background: url('/fond_blanc_crayon.jpg') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Montserrat', sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
-      color: #333333; /* gris foncé */
-      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .photo {
+      max-width: 60%;
+      height: auto;
+      z-index: 2;
     }
 
     .texte {
-      font-size: 2rem;
-      padding: 1rem;
-      max-width: 90%;
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+      font-size: 1.5rem;
+      color: #333333; /* gris foncé */
+      text-align: right;
+      line-height: 1.4;
+      z-index: 3;
     }
   </style>
 </head>
 <body>
+  <img src="/enfants_pas_isoles.jpg" alt="Enfants pas isolés" class="photo" />
   <div class="texte">
-    « Car un enfant devient ce qu'on fait de lui »
+    Car un enfant n'attend rien de la vie<br>
+    Car un enfant devient ce qu'on fait de lui...
   </div>
 </body>
 </html>
