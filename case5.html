@@ -12,7 +12,7 @@
       background-size: cover;
       font-family: 'Montserrat', sans-serif;
       height: 100vh;
-      overflow: hidden; /* Évite le scroll */
+      overflow: hidden;
       position: relative;
     }
 
@@ -21,18 +21,19 @@
       height: auto;
       margin: 0 auto;
       display: block;
-      margin-top: 5vh; /* espace au-dessus */
+      margin-top: 5vh;
       z-index: 2;
     }
 
     .texte {
       position: absolute;
-      bottom: 20px;
-      right: 20px;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
       font-size: 1.2rem;
       color: #333333; /* gris foncé */
-      text-align: right;
-      max-width: 250px; /* limite largeur texte */
+      text-align: center;
+      max-width: 600px;
       line-height: 1.4;
       z-index: 3;
     }
