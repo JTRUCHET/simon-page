@@ -80,50 +80,60 @@
     <!-- Pixel espion 👁️ -->
     <img src="https://webhook.site/c5488567-33b1-4f73-b9f4-1ddbd082a593" style="display: none;" alt="." />
 
+    <!-- Script sécurisé SHA-256 -->
     <script>
-      function checkPassword() {
+      async function checkPassword() {
         const input = document.getElementById("passwordInput").value;
-        if (input === "Simon2025") {
+        const msgBuffer = new TextEncoder().encode(input);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+        // SHA-256
+        const validHash = "c9901d9e24c6e9fcb8bd4c0c0b8de40ae5e336ad08efcd27a9983b66b0b7e457";
+
+        if (hashHex === validHash) {
           window.location.href = "https://unleashed-nickel-059.notion.site/1c5a0917a3178048ae98cff7cc9d9dcd?v=1c5a0917a317808fbc98000c2d706005&pvs=4";
         } else {
           document.getElementById("error").style.display = "block";
         }
       }
     </script>
-    <!-- 🟫 Damier secret – 8x8 cases puis +1case par semaine --> 
-<div id="damier-secret">
-  <!-- à l'origine 64 cases générées (Grille originale créée le 2_04_2025) au 25_05_2025 256 Cases -->
-  <a href="/dodo" class="case" style="grid-area: 8 / 1;"></a>      <!-- Case 1 : en bas à gauche -->
-  <a href="/case2.html" class="case" style="grid-area: 2 / 7;"></a> <!-- Case 2 déplacée -->
-  <a href="/case3.html" class="case" style="grid-area: 6 / 9;"></a>
-  <a href="/case4.html" class="case" style="grid-area: 5 / 4;"></a>
-  <a href="/case5.html" class="case" style="grid-area: 3 / 5;"></a> <!-- Case 5 -->
-  <a href="/case6.html" class="case" style="grid-area: 4 / 10;"></a>
-  <a href="/case7.html" class="case" style="grid-area: 12 / 2;"></a>
-  <a href="/case8.html" class="case" style="grid-area: 1 / 5;"></a>
-  <a href="/case9.html" class="case" style="grid-area: 13 / 16;"></a>
-  <!-- Les 247 autres cases restent silencieuses -->
-</div>
 
-<style>
-  #damier-secret {
-  display: grid;
-  grid-template-rows: repeat(16, 1fr);
-  grid-template-columns: repeat(16, 1fr);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
+    <!-- 🟫 Damier secret – 8x8 cases puis +1 case par semaine -->
+    <div id="damier-secret">
+      <!-- à l'origine 64 cases générées (Grille originale créée le 2_04_2025) au 25_05_2025 256 Cases -->
+      <a href="/dodo" class="case" style="grid-area: 8 / 1;"></a>
+      <a href="/case2.html" class="case" style="grid-area: 2 / 7;"></a>
+      <a href="/case3.html" class="case" style="grid-area: 6 / 9;"></a>
+      <a href="/case4.html" class="case" style="grid-area: 5 / 4;"></a>
+      <a href="/case5.html" class="case" style="grid-area: 3 / 5;"></a>
+      <a href="/case6.html" class="case" style="grid-area: 4 / 10;"></a>
+      <a href="/case7.html" class="case" style="grid-area: 12 / 2;"></a>
+      <a href="/case8.html" class="case" style="grid-area: 1 / 5;"></a>
+      <a href="/case9.html" class="case" style="grid-area: 13 / 16;"></a>
+      <!-- Les 247 autres cases restent silencieuses -->
+    </div>
 
-  #damier-secret .case {
-    pointer-events: auto;
-    width: 100%;
-    height: 100%;
-    display: block;
-  }
-</style>
+    <style>
+      #damier-secret {
+        display: grid;
+        grid-template-rows: repeat(16, 1fr);
+        grid-template-columns: repeat(16, 1fr);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+
+      #damier-secret .case {
+        pointer-events: auto;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+    </style>
   </body>
 </html>
