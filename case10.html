@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Case 5 - Damier</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/fond_blanc_crayon.jpg') no-repeat center center;
+      background-size: cover;
+      font-family: 'Montserrat', sans-serif;
+      position: relative;
+      overflow: hidden; /* supprime scroll */
+    }
+
+    .photo {
+      height: 100vh; /* hauteur de la photo = hauteur de l'écran */
+      width: auto;
+      display: block;
+      margin: 0 auto;
+      z-index: 2;
+      position: relative;
+    }
+
+    .texte {
+      position: absolute;
+      top: 10%;
+      left: 5%;
+      font-size: 1.1rem;
+      color: #333333;
+      line-height: 1.6;
+      max-width: 400px;
+      z-index: 3;
+      text-align: left;
+    }
+
+    #retour {
+      position: absolute;
+      bottom: 20px;
+      right: 2%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333333;
+      text-decoration: underline;
+      cursor: pointer;
+      z-index: 4;
+    }
+  </style>
+</head>
+<body>
+  <img src="/travaux.jpg" alt="travaux" class="photo" />
+  
+  <div class="texte">
+    ça c'est fait!
+  </div>
+
+  <div id="retour" ondblclick="window.location.href='/'">
+    (double clic ici pour retourner à l’accueil)
+  </div>
+</body>
+</html>
