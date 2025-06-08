@@ -89,30 +89,14 @@
 
       if (hashHex === validHash) {
         document.body.innerHTML = `
-          <div style="padding: 2rem; text-align: center;">
-            <div style="margin-bottom: 1.5rem;">
-              <button onclick="setIframe('papa')">🟣 Papa</button>
-              <button onclick="setIframe('maman')">🟡 Maman</button>
-              <button onclick="setIframe('score')">📊 Score</button>
-            </div>
-            <iframe id="calendarFrame"
-              src="https://calendar.google.com/calendar/embed?src=8p9hn68bln0ukhsnrccg4h1e4bakh7bn%40import.calendar.google.com&ctz=Europe%2FParis"
-              style="width: 90vw; height: 80vh; border: 1px solid #777; border-radius: 8px;"
-              frameborder="0" scrolling="no"></iframe>
-          </div>
-
-          <script>
-            function setIframe(view) {
-              const iframe = document.getElementById('calendarFrame');
-              if (view === 'papa') {
-                iframe.src = "https://calendar.google.com/calendar/embed?src=8p9hn68bln0ukhsnrccg4h1e4bakh7bn%40import.calendar.google.com&ctz=Europe%2FParis";
-              } else if (view === 'maman') {
-                iframe.src = "https://calendar.google.com/calendar/embed?src=ljfl1fav4d28rdk19ecdchvnv77stvf4%40import.calendar.google.com&ctz=Europe%2FParis";
-              } else if (view === 'score') {
-                iframe.src = "https://airtable.com/invite/l?inviteId=inveQtpjrNAIxWyEo&inviteToken=7321f2e2adbf1f1238bea43fa971194dd83e02c115a4b44cbcb1926526679aba&utm_medium=email&utm_source=product_team&utm_content=transactional-alerts";
-              }
-            }
-          </script>
+          <iframe 
+            src="https://calendar.google.com/calendar/embed?src=8p9hn68bln0ukhsnrccg4h1e4bakh7bn%40import.calendar.google.com&src=ljfl1fav4d28rdk19ecdchvnv77stvf4%40import.calendar.google.com&ctz=Europe%2FParis" 
+            style="border: 0" 
+            width="100%" 
+            height="100%" 
+            frameborder="0" 
+            scrolling="no">
+          </iframe>
         `;
       } else {
         document.getElementById("error").style.display = "block";
