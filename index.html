@@ -1,142 +1,141 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Accès protégé - Planning Simon</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f9f9f9;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-        position: relative;
+<head>
+  <meta charset="UTF-8" />
+  <title>Accès protégé - Planning Simon</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      position: relative;
+    }
+
+    .popup {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    input[type="password"] {
+      padding: 0.5rem;
+      font-size: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      width: 100%;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      background-color: #4285f4;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #error {
+      color: red;
+      display: none;
+      margin-top: 1rem;
+    }
+
+    .secret-zone {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      width: 30px;
+      height: 30px;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .secret-zone:hover {
+      opacity: 0.05;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup">
+    <h2>Simon vous souhaite la Bienvenue...</h2>
+    <p>Entrez le mot de passe pour accéder au planning :</p>
+    <input type="password" id="passwordInput" placeholder="Mot de passe" />
+    <br />
+    <button onclick="checkPassword()">OK</button>
+    <p id="error">Mot de passe incorrect. Accès refusé.</p>
+  </div>
+
+  <div class="secret-zone" ondblclick="window.location.href='/dodo'"></div>
+
+  <img src="https://webhook.site/c5488567-33b1-4f73-b9f4-1ddbd082a593" style="display: none;" alt="." />
+
+  <script>
+    async function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      const msgBuffer = new TextEncoder().encode(input);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+      const validHash = "ef876b2efa1a74b37bab69a9194d93cb9b31849287d5a1b035b025521e2e1e61";
+
+      if (hashHex === validHash) {
+        document.body.innerHTML = `
+          <iframe class="airtable-embed" 
+            src="https://airtable.com/embed/appQl76xJAJDOcNYf/shrICQpKJWKKyloTR?backgroundColor=orange&viewControls=on" 
+            frameborder="0" 
+            width="100%" 
+            height="100%" 
+            style="background: transparent; border: none;">
+          </iframe>
+        `;
+      } else {
+        document.getElementById("error").style.display = "block";
       }
+    }
+  </script>
 
-      .popup {
-        background: white;
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        text-align: center;
-      }
+  <div id="damier-secret">
+    <a href="/dodo" class="case" style="grid-area: 8 / 1;"></a>
+    <a href="/case2.html" class="case" style="grid-area: 2 / 7;"></a>
+    <a href="/case3.html" class="case" style="grid-area: 6 / 9;"></a>
+    <a href="/case4.html" class="case" style="grid-area: 5 / 4;"></a>
+    <a href="/case5.html" class="case" style="grid-area: 3 / 5;"></a>
+    <a href="/case6.html" class="case" style="grid-area: 4 / 10;"></a>
+    <a href="/case7.html" class="case" style="grid-area: 12 / 2;"></a>
+    <a href="/case8.html" class="case" style="grid-area: 1 / 5;"></a>
+    <a href="/case9.html" class="case" style="grid-area: 13 / 16;"></a>
+    <a href="/case10.html" class="case" style="grid-area: 7 / 17;"></a>
+    <a href="/case11.html" class="case" style="grid-area: 9 / 13;"></a>
+  </div>
 
-      input[type="password"] {
-        padding: 0.5rem;
-        font-size: 1.2rem;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        width: 100%;
-      }
+  <style>
+    #damier-secret {
+      display: grid;
+      grid-template-rows: repeat(18, 1fr);
+      grid-template-columns: repeat(18, 1fr);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
 
-      button {
-        margin-top: 1rem;
-        padding: 0.6rem 1.2rem;
-        font-size: 1rem;
-        border: none;
-        background-color: #4285f4;
-        color: white;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-
-      #error {
-        color: red;
-        display: none;
-        margin-top: 1rem;
-      }
-
-      .secret-zone {
-        position: absolute;
-        bottom: 10px;
-        left: 10px;
-        width: 30px;
-        height: 30px;
-        opacity: 0;
-        cursor: pointer;
-      }
-
-      .secret-zone:hover {
-        opacity: 0.05;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="popup">
-      <h2>Simon vous souhaite la Bienvenue...</h2>
-      <p>Entrez le mot de passe pour accéder au planning :</p>
-      <input type="password" id="passwordInput" placeholder="Mot de passe" />
-      <br />
-      <button onclick="checkPassword()">OK</button>
-      <p id="error">Mot de passe incorrect. Accès refusé.</p>
-    </div>
-
-    <div class="secret-zone" ondblclick="window.location.href='/dodo'"></div>
-
-    <img src="https://webhook.site/c5488567-33b1-4f73-b9f4-1ddbd082a593" style="display: none;" alt="." />
-
-    <script>
-      async function checkPassword() {
-        const input = document.getElementById("passwordInput").value;
-        const msgBuffer = new TextEncoder().encode(input);
-        const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-        const hashArray = Array.from(new Uint8Array(hashBuffer));
-        const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-
-        const validHash = "ef876b2efa1a74b37bab69a9194d93cb9b31849287d5a1b035b025521e2e1e61";
-
-        if (hashHex === validHash) {
-          document.body.innerHTML = `
-            <iframe class="airtable-embed" 
-              src="https://airtable.com/embed/appQl76xJAJDOcNYf/shriCQpKJWKKyloTR?backgroundColor=orange&viewControls=on" 
-              frameborder="0" 
-              width="100%" 
-              height="100%" 
-              style="background: transparent; border: none;">
-            </iframe>
-          `;
-        } else {
-          document.getElementById("error").style.display = "block";
-        }
-      }
-    </script>
-
-    <!-- 🟫 Damier secret – 8x8 cases puis +1case par semaine --> 
-    <div id="damier-secret">
-      <a href="/dodo" class="case" style="grid-area: 8 / 1;"></a>
-      <a href="/case2.html" class="case" style="grid-area: 2 / 7;"></a>
-      <a href="/case3.html" class="case" style="grid-area: 6 / 9;"></a>
-      <a href="/case4.html" class="case" style="grid-area: 5 / 4;"></a>
-      <a href="/case5.html" class="case" style="grid-area: 3 / 5;"></a>
-      <a href="/case6.html" class="case" style="grid-area: 4 / 10;"></a>
-      <a href="/case7.html" class="case" style="grid-area: 12 / 2;"></a>
-      <a href="/case8.html" class="case" style="grid-area: 1 / 5;"></a>
-      <a href="/case9.html" class="case" style="grid-area: 13 / 16;"></a>
-      <a href="/case10.html" class="case" style="grid-area: 7 / 17;"></a>
-      <a href="/case11.html" class="case" style="grid-area: 9 / 13;"></a>
-    </div>
-
-    <style>
-      #damier-secret {
-        display: grid;
-        grid-template-rows: repeat(18, 1fr);
-        grid-template-columns: repeat(18, 1fr);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-      }
-
-      #damier-secret .case {
-        pointer-events: auto;
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-    </style>
-  </body>
+    #damier-secret .case {
+      pointer-events: auto;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  </style>
+</body>
 </html>
