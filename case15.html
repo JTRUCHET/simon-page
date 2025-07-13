@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Case 15 - IN UTERO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: url('/fond_blanc_crayon.jpg') repeat;
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .side-text {
+      flex: 1;
+      max-width: 400px;
+      padding: 2rem;
+      color: #333;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      z-index: 3;
+    }
+
+    .center-img {
+      flex: none;
+      z-index: 2;
+    }
+
+    .center-img img {
+      height: 100vh;
+      display: block;
+    }
+
+    #retour {
+      position: absolute;
+      bottom: 20px;
+      right: 2%;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #333333;
+      text-decoration: underline;
+      cursor: pointer;
+      z-index: 4;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="side-text">
+      
+    </div>
+
+    <div class="center-img">
+      <img src="/inutero.jpg" alt="inutero" />
+    </div>
+
+    <div class="side-text"><!-- zone vide à droite, miroir -->
+      &nbsp;
+    </div>
+  </div>
+
+  <div id="retour" ondblclick="window.location.href='/'">
+    (double clic ici pour retourner à l’accueil)
+  </div>
+</body>
+</html>
