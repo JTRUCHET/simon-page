@@ -81,16 +81,24 @@
       display: block;
     }
 
-    ..case16 {
-  background-color: black;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: auto;
-}
+    .case16 {
+      background: transparent;
+      pointer-events: auto;
+    }
 
-.case16:hover {
-  opacity: 0.9;
-}
+    /* Overlay noir plein écran */
+    #flash-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: black;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 999;
+      transition: opacity 0.3s ease;
+    }
   </style>
 </head>
 <body>
@@ -125,7 +133,6 @@
     }
   </script>
 
- 
   <!-- 🟫 Damier secret – au 02 avril 2025 : 8x8 cases initiales puis +1 case par semaine -->
   <!-- ⏳ Au 21 juillet 2025 : 23 x 23 → 529 cases théoriques disponibles -->
   <!-- ⚫️ Case 16 – 20 juillet 2025 – L’oubli.
@@ -152,28 +159,23 @@
     <a href="/case13.html" class="case" style="grid-area: 16 / 17;"></a>
     <a href="/case14.html" class="case" style="grid-area: 3 / 20;"></a>
     <a href="/case15.html" class="case" style="grid-area: 20 / 21;"></a>
-    <a href="#case16" class="case case16" style="grid-area: 10 / 19;"></a>
+    <a class="case case16" style="grid-area: 10 / 19;"></a>
   </div>
 
-  <style>
-    #damier-secret {
-      display: grid;
-      grid-template-rows: repeat(23, 1fr);
-      grid-template-columns: repeat(23, 1fr);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
+  <!-- Overlay noir pour flash -->
+  <div id="flash-overlay"></div>
 
-    #damier-secret .case {
-      pointer-events: auto;
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-  </style>
+  <script>
+    const case16 = document.querySelector('.case16');
+    const overlay = document.getElementById('flash-overlay');
+
+    case16.addEventListener('mouseenter', () => {
+      overlay.style.opacity = '1';
+    });
+
+    case16.addEventListener('mouseleave', () => {
+      overlay.style.opacity = '0';
+    });
+  </script>
 </body>
 </html>
