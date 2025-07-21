@@ -61,6 +61,30 @@
     .secret-zone:hover {
       opacity: 0.05;
     }
+
+    #damier-secret {
+      display: grid;
+      grid-template-rows: repeat(23, 1fr);
+      grid-template-columns: repeat(23, 1fr);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    #damier-secret .case {
+      pointer-events: auto;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .case16 {
+      background-color: black;
+      pointer-events: none;
+    }
   </style>
 </head>
 <body>
@@ -95,7 +119,17 @@
     }
   </script>
 
-  <!-- 🟫 Damier secret – au 02 avril 2025 8x8 cases puis +1case par semaine -- Au 13 Juillet 2025 484 Cases dans le Damier --> 
+ 
+  <!-- 🟫 Damier secret – au 02 avril 2025 : 8x8 cases initiales puis +1 case par semaine -->
+  <!-- ⏳ Au 21 juillet 2025 : 23 x 23 → 529 cases théoriques disponibles -->
+  <!-- ⚫️ Case 16 – 20 juillet 2025 – L’oubli.
+       La première faille du système.
+       Ni volontaire, ni dramatique.
+       Juste humaine.
+       Ce jour-là, le créateur était avec Simon.
+       Et cette case s’est effacée dans l’ombre.
+       Elle n’a pas été écrite, mais elle est là, en silence. -->
+
   <div id="damier-secret">
     <a href="/dodo" class="case" style="grid-area: 8 / 1;"></a>
     <a href="/case2.html" class="case" style="grid-area: 2 / 7;"></a>
@@ -112,13 +146,14 @@
     <a href="/case13.html" class="case" style="grid-area: 16 / 17;"></a>
     <a href="/case14.html" class="case" style="grid-area: 3 / 20;"></a>
     <a href="/case15.html" class="case" style="grid-area: 20 / 21;"></a>
+    <a href="#case16" class="case case16" style="grid-area: 10 / 19;"></a>
   </div>
 
   <style>
     #damier-secret {
       display: grid;
-      grid-template-rows: repeat(22, 1fr);
-      grid-template-columns: repeat(22, 1fr);
+      grid-template-rows: repeat(23, 1fr);
+      grid-template-columns: repeat(23, 1fr);
       position: absolute;
       top: 0;
       left: 0;
