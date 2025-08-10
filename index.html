@@ -84,6 +84,7 @@
     .blackout {
       background: transparent;
       pointer-events: auto;
+      cursor: pointer; /* feedback visuel */
     }
 
     /* Overlay noir plein écran */
@@ -96,8 +97,9 @@
       background-color: black;
       opacity: 0;
       pointer-events: none;
-      z-index: 999;
-      transition: opacity 0.3s ease;
+      z-index: 999999; /* très haut, passe devant tout */
+      transition: opacity 0.2s ease;
+      will-change: opacity;
     }
   </style>
 </head>
@@ -135,8 +137,8 @@
 
   <!-- 🟫 Damier secret – au 02 avril 2025 : 8x8 cases initiales puis +1 case par semaine -->
   <!-- ⏳ Au 10 Août 2025 : 26 x 26 → 676 cases théoriques disponibles -->
-  <!-- ⚫️ BlackOut – 20 juillet 2025 – L’oubli.
-       La première faille du système.
+  <!-- ⚫️ BlackOut – 20 juillet 2025 – L’oubli... 
+  La première faille du système.
        Ni volontaire, ni dramatique.
        Juste humaine.
        Ce jour-là, j'étais avec Simon.
@@ -169,15 +171,40 @@
   <div id="flash-overlay"></div>
 
   <script>
-    const blackout = document.querySelector('.blackout');
     const overlay = document.getElementById('flash-overlay');
+    const blackouts = document.querySelectorAll('.case.blackout');
 
-    blackout.addEventListener('mouseenter', () => {
+    function showOverlay() {
       overlay.style.opacity = '1';
-    });
-
-    blackout.addEventListener('mouseleave', () => {
+    }
+    function hideOverlay() {
       overlay.style.opacity = '0';
+    }
+    function pulseOverlay() {
+      showOverlay();
+      setTimeout(hideOverlay, 220); // petit flash court
+    }
+
+    blackouts.forEach((el) => {
+      // rend accessible au clavier si pas de href
+      if (!el.hasAttribute('href')) el.setAttribute('tabindex', '0');
+
+      el.addEventListener('mouseenter', showOverlay);
+      el.addEventListener('mouseleave', hideOverlay);
+
+      // mobile / clic : flash bref
+      el.addEventListener('click', (e) => {
+        e.preventDefault();
+        pulseOverlay();
+      });
+
+      // clavier (Enter/Espace)
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          pulseOverlay();
+        }
+      });
     });
   </script>
 </body>
