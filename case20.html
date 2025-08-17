@@ -13,60 +13,83 @@
       background: url('/fond_blanc_crayon.jpg') no-repeat center center;
       background-size: cover;
       font-family: 'Montserrat', sans-serif;
-      position: relative;
-      overflow: hidden; /* supprime scroll */
     }
 
-    .photo {
-      height: 100vh; /* hauteur de la photo = hauteur de l'écran */
-      width: auto;
-      display: block;
-      margin: 0 auto;
-      z-index: 2;
+    .wrap {
+      display: flex;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
     }
 
-    .texte {
-      position: absolute;
-      top: 10%;
-      left: 2%;
-      font-size: 1rem;
-      color: #333333;
+    .col-texte {
+      flex: 0 0 42vw;                /* largeur fixe à gauche */
+      padding: 8vh 3vw;
+      color: #333;
       line-height: 1.5;
-      max-width: 40%;
-      z-index: 3;
-      text-align: left;
+      font-size: 1rem;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .col-image {
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      overflow: hidden;              /* coupe toute débordement de l'image */
+    }
+
+    .col-image img.photo {
+      height: 100vh;                 /* image plein hauteur */
+      width: auto;                   /* conserve les proportions */
+      display: block;
     }
 
     #retour {
-      position: absolute;
+      position: fixed;
       bottom: 20px;
       right: 2%;
-      text-align: center;
       font-size: 0.9rem;
       color: #333333;
       text-decoration: underline;
       cursor: pointer;
-      z-index: 4;
+      z-index: 10;
+    }
+
+    /* Responsive : sur petit écran on empile */
+    @media (max-width: 900px) {
+      .wrap { flex-direction: column; }
+      .col-texte { flex-basis: auto; padding: 4vh 6vw; }
+      .col-image { justify-content: center; }
+      .col-image img.photo { width: 100%; height: auto; }
     }
   </style>
 </head>
 <body>
-  <img src="/yeux.jpg" alt="yeux" class="photo" />
-  
-  <div class="texte">
-    « Papa, j’enlève mes lunettes pour te montrer mes beaux yeux… »<br><br>
 
-    Mon fils,<br><br>
+  <div class="wrap">
+    <div class="col-texte">
+      <div>
+        « Papa, j’enlève mes lunettes pour te montrer mes beaux yeux… »<br><br>
 
-    Tes yeux sont beaux, oui. Mais ne les regarde pas seulement comme un miroir.<br>
-    Apprends à chercher dans les yeux des autres.<br>
-    À voir le monde par leur regard.<br>
-    C’est là que se cache la vraie beauté.<br><br>
+        Mon fils,<br><br>
 
-    Je t’aime, mon fils.<br>
-    N’oublie jamais qui tu es, mais n’oublie jamais non plus de voir qui sont les autres.<br><br>
+        Tes yeux sont beaux, oui. Mais ne les regarde pas seulement comme un miroir.<br>
+        Apprends à chercher dans les yeux des autres.<br>
+        À voir le monde par leur regard.<br>
+        C’est là que se cache la vraie beauté.<br><br>
 
-    — Ton papa
+        Je t’aime, mon fils.<br>
+        N’oublie jamais qui tu es, mais n’oublie jamais non plus de voir qui sont les autres.<br><br>
+
+        — Ton papa
+      </div>
+    </div>
+
+    <div class="col-image">
+      <img src="/yeux.jpg" alt="yeux" class="photo" />
+    </div>
   </div>
 
   <div id="retour" ondblclick="window.location.href='/'">
